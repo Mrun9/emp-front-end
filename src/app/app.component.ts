@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
       {
         next: (res: any) => {
           this.getEmployees();
+          this.employee = {id: 0, name: ''};
         },
         error: (err) => {
           console.log(err);

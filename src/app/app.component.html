@@ -1,16 +1,36 @@
-Enter id: <input [(ngModel)]="employee.id" type="number"> <br>
-Enter name: <input [(ngModel)]="employee.name" type="text"> <br>
-<button *ngIf="!isEdit" (click)="addEmployee()">Add</button>
-<button *ngIf="isEdit" (click)="saveEmployee()">Save</button>
-<button *ngIf="isEdit" (click)="cancelEdit()">Cancel</button>
-
-<div>
-  List of Employees
-  <div *ngFor="let emp of employees">
-    {{emp.id}} {{emp.name}}
-    <button (click)="onEditClick(emp)">Edit</button>
-    <button (click)="deleteEmployee(emp.id)">Delete</button>
+<div class="container list">
+  <div class="mb-3">
+    <label class="form-label">Enter id:</label>
+    <input class="form-control" [(ngModel)]="employee.id" type="number"> <br>
   </div>
+  <div class="mb-3">
+    <label class="form-label">Enter name: </label>
+    <input class="form-control" [(ngModel)]="employee.name" type="text"> <br>
+  </div>
+  <button class="btn btn-primary mx-3" *ngIf="!isEdit" (click)="addEmployee()">Add</button>
+  <button class="btn btn-warning mx-3" *ngIf="isEdit" (click)="saveEmployee()">Save</button>
+  <button class="btn btn-primary" *ngIf="isEdit" (click)="cancelEdit()">Cancel</button>
+</div>
 
-  <div *ngIf="!employees.length">No employees to show</div>
+<div class="list">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees">
+          <th scope="row">{{emp.id}}</th>
+          <td>{{emp.name}}</td>
+          <td><button class="btn btn-primary" (click)="onEditClick(emp)">Edit</button></td>
+          <td><button class="btn btn-danger" (click)="deleteEmployee(emp.id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!employees.length">No employees to show</div>
 </div>
