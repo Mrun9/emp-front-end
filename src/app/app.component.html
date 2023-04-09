@@ -1,7 +1,16 @@
-<div>
-  Hello World
-</div>
-Enter id: <input type="number"> <br>
-Enter name: <input type="text"> <br>
-<input type="button" value="Submit">
+Enter id: <input [(ngModel)]="employee.id" type="number"> <br>
+Enter name: <input [(ngModel)]="employee.name" type="text"> <br>
+<button *ngIf="!isEdit" (click)="addEmployee()">Add</button>
+<button *ngIf="isEdit" (click)="saveEmployee()">Save</button>
+<button *ngIf="isEdit" (click)="cancelEdit()">Cancel</button>
 
+<div>
+  List of Employees
+  <div *ngFor="let emp of employees">
+    {{emp.id}} {{emp.name}}
+    <button (click)="onEditClick(emp)">Edit</button>
+    <button (click)="deleteEmployee(emp.id)">Delete</button>
+  </div>
+
+  <div *ngIf="!employees.length">No employees to show</div>
+</div>
